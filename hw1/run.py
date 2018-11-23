@@ -83,7 +83,6 @@ class Policy():
             logging.debug(f"obsvs: {obsvs}")
             actions.append(self.predict(np.expand_dims(obsv,axis=0))[0])
             logging.debug(f"actions: {actions}")
-            # break
             obsv, r, done, _ = env.step(actions[-1])
             reward += r
             if steps >= max_steps or done:
@@ -184,6 +183,7 @@ if __name__ == '__main__':
     for env, model in env_models.items():
         if i > 0:
             ret = behavioral_cloning(env_name=env, expert_policy=model, num_rollouts=2, max_timesteps=None, num_epochs=10)
+            # break
         i += 1
     # # dagger runs
     # for env, model in env_models.items():
